@@ -12,7 +12,7 @@ ze-reis-site/
     ├── foto-candidato-sem-fundo.png   ← recorte do candidato (fundo transparente), usado na urna
     ├── foto-2.jpg                     ← retrato oficial, seção "Quem é"
     ├── evento-1..6 .jpg               ← galeria (retrato/paisagem, comprimidas)
-    ├── hero-banner.jpg / .webp        ← ainda é a arte placeholder do site anterior (TODO)
+    ├── hero-igor.png                  ← foto do candidato no hero (fundo transparente)
     └── favicon.svg
 ```
 
@@ -28,14 +28,15 @@ Todos os pontos abaixo estão marcados com `TODO` no código.
 
 | Onde | O que falta |
 |---|---|
-| `index.html` · Hero | Banner oficial da campanha (`hero-banner.jpg/.webp`) ainda não foi entregue. A foto atual (`hero-igor.png`) é real, mas pode ser trocada por uma peça oficial da campanha quando ela existir. |
-| `index.html` · WhatsApp | Número real da campanha: hoje aponta para `https://wa.me/NUMERO_IGOR` (hero, Participe e botão flutuante). |
 | `index.html` · Vídeos | 3 iframes com `data-src="URL_DO_VIDEO"`: trocar pela URL de embed. O carregamento lazy já está pronto no `script.js`. |
 | `index.html` · Apoios | 3 cards de depoimento com nome, cargo e texto de exemplo. |
 | `index.html` · Trabalho Realizado | 4 realizações com valor "Dados a confirmar" + 1 card totalmente pendente ("Próxima entrega"). |
 | `index.html` · Redes sociais | Facebook, YouTube e TikTok com `href="#"` (Instagram já está preenchido com `instagram.com/igor.eto`). |
-| `index.html` · Rodapé | CNPJ da campanha. |
-| `script.js` · formulário | O envio é só validado no front e mostra confirmação. Falta apontar para o endpoint da campanha. |
+
+Já preenchidos com dados reais: CNPJ da campanha, WhatsApp oficial (hero, Participe e botão
+flutuante) e e-mail da campanha (card "E-mail" em Participe). CPF, data de nascimento e
+endereço residencial do candidato foram recebidos mas **não** entraram no site — são dados
+sensíveis sem exigência legal de publicação numa landing page de campanha.
 
 ## Detalhes de implementação
 
@@ -53,7 +54,10 @@ Todos os pontos abaixo estão marcados com `TODO` no código.
 - **Paleta**: azul navy (`#1A3A8F`/`#0A1628`) + amarelo (`#F5C400`) + branco.
   Sem laranja, vermelho ou rosa em nenhum elemento de campanha (o verde do
   WhatsApp é a única exceção, por convenção da própria marca do WhatsApp).
-- **Peso inicial**: CSS + JS + hero em WebP. As fotos da galeria carregam sob
+- **Formulário de contato**: sem backend. Ao enviar, valida os campos, mostra a
+  confirmação e abre o WhatsApp da campanha numa nova aba, já com nome, e-mail,
+  telefone e mensagem preenchidos no texto (`wa.me/5531999267007?text=...`).
+- **Peso inicial**: CSS + JS + hero. As fotos da galeria carregam sob
   demanda com `loading="lazy"`.
 - **Acessibilidade**: navegação por teclado no lightbox (setas e `Esc`), foco
   visível, contraste conferido para WCAG AA (inclusive nos elementos amarelos,

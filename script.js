@@ -413,6 +413,8 @@
     const sucesso = $('#formSucesso');
     if (!form) return;
 
+    const WHATSAPP_CAMPANHA = '5531999267007'; // número oficial da campanha (Mariana), com DDI 55
+
     const regras = {
       nome:     (v) => v.trim().length >= 2 || 'Informe seu nome.',
       email:    (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) || 'Informe um e-mail válido.',
@@ -446,8 +448,25 @@
         if (primeiro) primeiro.focus();
         return;
       }
-      // TODO: enviar para o endpoint da campanha (fetch/POST).
+      // Sem backend: a mensagem preenchida vira um WhatsApp pronto para o
+      // eleitor mandar direto pra campanha, com os dados do formulário.
+      const dados = {
+        nome: form.elements.nome.value.trim(),
+        email: form.elements.email.value.trim(),
+        telefone: form.elements.telefone.value.trim(),
+        mensagem: form.elements.mensagem.value.trim(),
+      };
+      const texto = [
+        `Olá! Meu nome é ${dados.nome}.`,
+        `E-mail: ${dados.email}`,
+        `Telefone: ${dados.telefone}`,
+        '',
+        dados.mensagem,
+      ].join('\n');
+      const linkWhats = `https://wa.me/${WHATSAPP_CAMPANHA}?text=${encodeURIComponent(texto)}`;
+
       sucesso.classList.add('visivel');
+      window.open(linkWhats, '_blank', 'noopener');
       form.reset();
       setTimeout(() => sucesso.classList.remove('visivel'), 6000);
     });

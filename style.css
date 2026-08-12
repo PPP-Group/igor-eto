@@ -965,6 +965,7 @@ ol, ul { list-style: none; }
 }
 .cta-card:hover { transform: translateY(-6px); box-shadow: 0 26px 50px rgba(10,22,40,.4); }
 .cta-whats { background: linear-gradient(150deg, #0E7B34, #128C4B); }
+.cta-email { background: linear-gradient(150deg, #0A1628, #1A3A8F); }
 .cta-voluntario { background: linear-gradient(150deg, #F5C400, #FFD740); color: var(--azul-navy); width: 100%; }
 .cta-ico { width: 44px; height: 44px; fill: rgba(255,255,255,.95); margin-bottom: .8rem; }
 .cta-voluntario .cta-ico { fill: rgba(10,22,40,.9); }
