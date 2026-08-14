@@ -620,8 +620,10 @@ ol, ul { list-style: none; }
 .timeline-card.destaque { border-left: 4px solid var(--verde-lima); }
 .timeline-ano {
   display: block;
-  font-family: var(--display); font-weight: 900; font-size: 1.5rem;
-  color: var(--verde-lima); line-height: 1.1; letter-spacing: .01em;
+  font-family: var(--display); font-weight: 900; font-size: 1.15rem;
+  text-transform: uppercase;
+  color: var(--verde-lima); line-height: 1.15; letter-spacing: .02em;
+  margin-bottom: .15rem;
 }
 .timeline-card p { color: rgba(255,255,255,.84); font-size: .98rem; }
 
@@ -796,6 +798,13 @@ ol, ul { list-style: none; }
 }
 .proposta-card p { color: rgba(255,255,255,.88); font-size: .97rem; }
 
+.caminho-tagline {
+  margin-top: 2.5rem;
+  font-family: var(--display); font-weight: 800; text-transform: uppercase;
+  letter-spacing: .01em; font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  color: var(--branco); max-width: 32ch;
+}
+
 /* faixa de bandeiras centrais, abaixo dos 4 cards do Caminho do Recurso */
 .bandeiras-faixa {
   margin-top: 2.5rem;
@@ -868,11 +877,13 @@ ol, ul { list-style: none; }
   display: flex; align-items: baseline; justify-content: center; gap: .18em;
 }
 .numero-valor em { font-style: normal; font-size: .48em; color: var(--verde-lima); }
+.numero-valor-texto { font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.15; }
 .numero-label {
   color: rgba(255,255,255,.8); font-size: .92rem; margin-top: .7rem; line-height: 1.45;
 }
 
 .realizacoes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+#trabalho-realizado .realizacoes-grid { grid-template-columns: repeat(2, 1fr); }
 .realizacao-card {
   background: var(--branco);
   border-left: 5px solid var(--azul-principal);

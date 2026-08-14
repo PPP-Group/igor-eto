@@ -29,7 +29,6 @@ Todos os pontos abaixo estão marcados com `TODO` no código.
 | Onde | O que falta |
 |---|---|
 | `index.html` · Vídeos | 3 iframes com `data-src="URL_DO_VIDEO"`: trocar pela URL de embed. O carregamento lazy já está pronto no `script.js`. |
-| `index.html` · Apoios | 3 cards de depoimento com nome, cargo e texto de exemplo. |
 | `index.html` · Trabalho Realizado | 4 realizações com valor "Dados a confirmar" + 1 card totalmente pendente ("Próxima entrega"). |
 | `index.html` · Redes sociais | Facebook, YouTube e TikTok com `href="#"` (Instagram já está preenchido com `instagram.com/igor.eto`). |
 
