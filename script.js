@@ -130,6 +130,20 @@
     }, { threshold: 0.15 });
 
     alvos.forEach((el) => obs.observe(el));
+
+    // Rede de segurança: em conexões lentas o IntersectionObserver pode
+    // demorar a disparar, e até lá o elemento fica deslocado (opacity:0 +
+    // transform) — o que pode "vazar" pra fora da tela no mobile. Revela na
+    // marra tudo que já estiver na viewport (ou perto dela) assim que a
+    // página carrega, sem esperar o observer.
+    addEventListener('load', () => {
+      const alturaViewport = innerHeight;
+      alvos.forEach((el) => {
+        if (el.classList.contains('visible')) return;
+        const r = el.getBoundingClientRect();
+        if (r.top < alturaViewport && r.bottom > 0) el.classList.add('visible');
+      });
+    });
   })();
 
   /* ═══════════ 7 · URNA ELETRÔNICA INTERATIVA ═══════════ */
