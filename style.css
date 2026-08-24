@@ -621,6 +621,7 @@ ol, ul { list-style: none; }
 
 .caminho-tagline {
   margin-top: 2.5rem;
+  margin-inline: auto;
   font-family: var(--display); font-weight: 800; text-transform: uppercase;
   letter-spacing: .01em; font-size: clamp(1.15rem, 2.2vw, 1.5rem);
   color: var(--branco); max-width: 32ch;
