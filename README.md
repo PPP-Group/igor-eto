@@ -9,7 +9,6 @@ ze-reis-site/
 ├── style.css
 ├── script.js
 └── assets/
-    ├── foto-candidato-sem-fundo.png   ← recorte do candidato (fundo transparente), usado na urna
     ├── foto-2.jpg                     ← retrato oficial, seção "Quem é"
     ├── evento-1..6 .jpg               ← galeria (retrato/paisagem, comprimidas)
     ├── hero-igor.png                  ← foto do candidato no hero (fundo transparente)
@@ -42,14 +41,6 @@ sensíveis sem exigência legal de publicação numa landing page de campanha.
 - **Fotos**: as imagens de `assets/` vieram da pasta `FOTOS/` fornecida pela
   campanha (recomprimidas/recortadas para peso de web: algumas chegaram em
   vários MB e giraram sozinhas pela ausência de orientação EXIF correta).
-  `foto-candidato-sem-fundo.png` usa um recorte com fundo já transparente
-  entregue pela campanha ("Olhar Horizonte.png"); nenhum fundo foi removido
-  manualmente neste projeto.
-- **Urna eletrônica**: 100% CSS/SVG, sem imagem de fundo. Digita `7077`
-  sozinha ao entrar na viewport, no hover ou no toque; aceita digitação manual
-  pelo teclado numérico (4 dígitos); `CONFIRMA` dispara confetes e `CORRIGE`
-  reinicia. O som (beeps via `AudioContext`) só toca depois da primeira
-  interação do usuário na página, para respeitar as políticas de autoplay.
 - **Paleta**: azul navy (`#1A3A8F`/`#0A1628`) + amarelo (`#F5C400`) + branco.
   Sem laranja, vermelho ou rosa em nenhum elemento de campanha (o verde do
   WhatsApp é a única exceção, por convenção da própria marca do WhatsApp).
