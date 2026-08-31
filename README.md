@@ -46,7 +46,7 @@ sensíveis sem exigência legal de publicação numa landing page de campanha.
   WhatsApp é a única exceção, por convenção da própria marca do WhatsApp).
 - **Formulário de contato**: sem backend. Ao enviar, valida os campos, mostra a
   confirmação e abre o WhatsApp da campanha numa nova aba, já com nome, e-mail,
-  telefone e mensagem preenchidos no texto (`wa.me/5531999267007?text=...`).
+  telefone e mensagem preenchidos no texto (`wa.me/5531971750070?text=...`).
 - **Peso inicial**: CSS + JS + hero. As fotos da galeria carregam sob
   demanda com `loading="lazy"`.
 - **Acessibilidade**: navegação por teclado no lightbox (setas e `Esc`), foco

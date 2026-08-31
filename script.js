@@ -231,7 +231,7 @@
     const sucesso = $('#formSucesso');
     if (!form) return;
 
-    const WHATSAPP_CAMPANHA = '5531999267007'; // número oficial da campanha (Mariana), com DDI 55
+    const WHATSAPP_CAMPANHA = '5531971750070'; // número oficial da campanha, com DDI 55
 
     const regras = {
       nome:     (v) => v.trim().length >= 2 || 'Informe seu nome.',
