@@ -322,21 +322,4 @@
     });
   })();
 
-  /* ═══════════ 12 · VÍDEOS (lazy) ═══════════ */
-  (function videos() {
-    $$('.video-card').forEach((card) => {
-      const iframe = $('iframe', card);
-      const src = iframe && iframe.dataset.src;
-      if (!src || src === 'URL_DO_VIDEO') return;   // ainda é placeholder
-      card.removeAttribute('data-placeholder');
-      const ph = $('.video-placeholder', card);
-      if (ph) ph.remove();
-      new IntersectionObserver((e, obs) => {
-        if (!e[0].isIntersecting) return;
-        iframe.src = src;
-        obs.disconnect();
-      }, { rootMargin: '200px' }).observe(card);
-    });
-  })();
-
 })();

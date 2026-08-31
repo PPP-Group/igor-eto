@@ -27,7 +27,6 @@ Todos os pontos abaixo estão marcados com `TODO` no código.
 
 | Onde | O que falta |
 |---|---|
-| `index.html` · Vídeos | 3 iframes com `data-src="URL_DO_VIDEO"`: trocar pela URL de embed. O carregamento lazy já está pronto no `script.js`. |
 | `index.html` · Trabalho Realizado | 4 realizações com valor "Dados a confirmar" + 1 card totalmente pendente ("Próxima entrega"). |
 | `index.html` · Redes sociais | Facebook, YouTube e TikTok com `href="#"` (Instagram já está preenchido com `instagram.com/igor.eto`). |
 
@@ -44,6 +43,11 @@ sensíveis sem exigência legal de publicação numa landing page de campanha.
 - **Paleta**: azul navy (`#1A3A8F`/`#0A1628`) + amarelo (`#F5C400`) + branco.
   Sem laranja, vermelho ou rosa em nenhum elemento de campanha (o verde do
   WhatsApp é a única exceção, por convenção da própria marca do WhatsApp).
+- **Posts do Instagram ("Nas redes")**: 3 posts fixos, embed oficial do
+  Instagram (`instagram.com/embed.js`, sem widget de terceiro nem custo).
+  São 3 links fixos escolhidos pela campanha, não atualizam sozinhos — pra
+  trocar, é só editar o `data-instgrm-permalink` de cada `<blockquote>` no
+  `index.html` pelo link do novo post.
 - **Formulário de contato**: sem backend. Ao enviar, valida os campos, mostra a
   confirmação e abre o WhatsApp da campanha numa nova aba, já com nome, e-mail,
   telefone e mensagem preenchidos no texto (`wa.me/5531971750070?text=...`).
