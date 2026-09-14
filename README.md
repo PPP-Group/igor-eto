@@ -38,6 +38,12 @@ sensíveis sem exigência legal de publicação numa landing page de campanha.
 
 ## Detalhes de implementação
 
+- **Cache-busting**: `index.html` referencia `style.css` e `script.js` com
+  `?v=AAAAMMDDNN` (ex.: `?v=2026091401`). Sem isso, navegadores (e às vezes
+  o CDN) servem a versão em cache desses dois arquivos depois de um deploy,
+  e a mudança "não aparece" pro usuário mesmo com o servidor já atualizado.
+  **Sempre que `style.css` ou `script.js` mudar, atualize esse `?v=` nos
+  dois `<link>`/`<script>` do `index.html`** (data de hoje + sequencial).
 - **Fotos**: as imagens de `assets/` vieram da pasta `FOTOS/` fornecida pela
   campanha (recomprimidas/recortadas para peso de web: algumas chegaram em
   vários MB e giraram sozinhas pela ausência de orientação EXIF correta).
