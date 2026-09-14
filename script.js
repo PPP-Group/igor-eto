@@ -231,7 +231,9 @@
     const sucesso = $('#formSucesso');
     if (!form) return;
 
-    const WHATSAPP_CAMPANHA = '5531971750070'; // número oficial da campanha, com DDI 55
+    // Apps Script Web App (docs/apps-script-formulario.gs) — grava cada
+    // envio numa linha da planilha do Google Sheets.
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbywWW3N381Tn_FvzCgbL5lVf5kYnmLcg0v9grTR5AnjMwIbsuXZ54NLVG805BZZ4A6b/exec';
 
     const regras = {
       nome:     (v) => v.trim().length >= 2 || 'Informe seu nome.',
@@ -258,6 +260,10 @@
       });
     });
 
+    const erro = $('#formErro');
+    const botaoEnviar = $('button[type="submit"]', form);
+    const textoBotaoOriginal = botaoEnviar ? botaoEnviar.textContent : '';
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const valido = Object.keys(regras).map(validarCampo).every(Boolean);
@@ -266,27 +272,39 @@
         if (primeiro) primeiro.focus();
         return;
       }
-      // Sem backend: a mensagem preenchida vira um WhatsApp pronto para o
-      // eleitor mandar direto pra campanha, com os dados do formulário.
+
       const dados = {
         nome: form.elements.nome.value.trim(),
         email: form.elements.email.value.trim(),
         telefone: form.elements.telefone.value.trim(),
         mensagem: form.elements.mensagem.value.trim(),
       };
-      const texto = [
-        `Olá! Meu nome é ${dados.nome}.`,
-        `E-mail: ${dados.email}`,
-        `Telefone: ${dados.telefone}`,
-        '',
-        dados.mensagem,
-      ].join('\n');
-      const linkWhats = `https://wa.me/${WHATSAPP_CAMPANHA}?text=${encodeURIComponent(texto)}`;
 
-      sucesso.classList.add('visivel');
-      window.open(linkWhats, '_blank', 'noopener');
-      form.reset();
-      setTimeout(() => sucesso.classList.remove('visivel'), 6000);
+      sucesso.classList.remove('visivel');
+      if (erro) erro.classList.remove('visivel');
+      if (botaoEnviar) { botaoEnviar.disabled = true; botaoEnviar.textContent = 'Enviando...'; }
+
+      // Grava a mensagem na planilha via Apps Script. O Apps Script não
+      // responde com cabeçalhos CORS, então usamos "no-cors": a resposta
+      // fica opaca (não dá pra ler), mas a gravação acontece normalmente.
+      // Por isso validamos o sucesso pelo fetch não ter lançado erro de rede.
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(dados),
+      })
+        .then(() => {
+          sucesso.classList.add('visivel');
+          form.reset();
+          setTimeout(() => sucesso.classList.remove('visivel'), 6000);
+        })
+        .catch(() => {
+          if (erro) erro.classList.add('visivel');
+        })
+        .finally(() => {
+          if (botaoEnviar) { botaoEnviar.disabled = false; botaoEnviar.textContent = textoBotaoOriginal; }
+        });
     });
 
     // CTA "Quero ser voluntário"

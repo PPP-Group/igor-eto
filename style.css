@@ -119,6 +119,7 @@ ol, ul { list-style: none; }
   transition: transform .25s, box-shadow .25s, background-color .25s, color .25s;
   will-change: transform;
 }
+.btn:disabled { opacity: .6; cursor: not-allowed; transform: none !important; }
 .btn-amarelo {
   background: var(--laranja-vivo); color: var(--azul-navy);
   box-shadow: 0 10px 26px rgba(245,196,0,.32);
@@ -750,6 +751,12 @@ ol, ul { list-style: none; }
   border-radius: 10px; color: #BFF5D6; font-weight: 600;
 }
 .form-sucesso.visivel { display: block; animation: fadeUp .4s ease; }
+.form-erro {
+  display: none; margin-top: 1rem; padding: .9rem 1.1rem;
+  background: rgba(245,196,0,.14); border: 1.5px solid var(--laranja-claro);
+  border-radius: 10px; color: var(--laranja-claro); font-weight: 600;
+}
+.form-erro.visivel { display: block; animation: fadeUp .4s ease; }
 
 .contato-ctas { display: flex; flex-direction: column; gap: 1.2rem; }
 .cta-card {

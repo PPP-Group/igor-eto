@@ -27,8 +27,9 @@ Todos os pontos abaixo estão marcados com `TODO` no código.
 
 | Onde | O que falta |
 |---|---|
+| `script.js` · Formulário | `APPS_SCRIPT_URL` ainda é um placeholder. Ver seção "Formulário → Google Sheets" abaixo. |
 | `index.html` · Trabalho Realizado | 4 realizações com valor "Dados a confirmar" + 1 card totalmente pendente ("Próxima entrega"). |
-| `index.html` · Redes sociais | Facebook, YouTube e TikTok com `href="#"` (Instagram já está preenchido com `instagram.com/igor.eto`). |
+| `index.html` · Redes sociais | Facebook, YouTube e TikTok foram removidos a pedido da campanha; só o Instagram real ficou. |
 
 Já preenchidos com dados reais: CNPJ da campanha, WhatsApp oficial (hero, Participe e botão
 flutuante) e e-mail da campanha (card "E-mail" em Participe). CPF, data de nascimento e
@@ -48,9 +49,29 @@ sensíveis sem exigência legal de publicação numa landing page de campanha.
   São 3 links fixos escolhidos pela campanha, não atualizam sozinhos — pra
   trocar, é só editar o `data-instgrm-permalink` de cada `<blockquote>` no
   `index.html` pelo link do novo post.
-- **Formulário de contato**: sem backend. Ao enviar, valida os campos, mostra a
-  confirmação e abre o WhatsApp da campanha numa nova aba, já com nome, e-mail,
-  telefone e mensagem preenchidos no texto (`wa.me/5531971750070?text=...`).
+- **Formulário de contato**: valida os campos e envia (`fetch` com
+  `mode: 'no-cors'`) para um Google Apps Script Web App, que grava uma linha
+  numa planilha do Google Sheets. Não abre mais o WhatsApp automaticamente.
+
+  ### Formulário → Google Sheets (configuração)
+  1. Crie uma planilha no [Google Sheets](https://sheets.google.com).
+  2. Extensões → Apps Script → apague o conteúdo padrão e cole o script de
+     [`docs/apps-script-formulario.gs`](docs/apps-script-formulario.gs).
+  3. Implantar → Nova implantação → tipo "App da Web" → executar como você
+     mesmo → acesso "Qualquer pessoa" → Implantar (autorize quando pedir).
+  4. Copie a URL gerada (termina em `/exec`) e cole em `script.js`, na
+     constante `APPS_SCRIPT_URL` (dentro da função `formulario()`).
+  5. Compartilhe a planilha (Drive → Compartilhar) com quem for acompanhar
+     as respostas.
+
+  O script não envia e-mail nenhum, só grava na planilha (permissão
+  mínima necessária: acesso ao Google Sheets). O mesmo script serve para
+  outros sites de campanha — basta repetir os passos numa planilha nova
+  para cada um.
+  Como o Apps Script não responde com cabeçalhos CORS, o `no-cors` deixa a
+  resposta opaca: o site não consegue confirmar o status HTTP, só se a
+  requisição saiu da rede sem erro (por isso a validação de sucesso é
+  "a promessa não rejeitou", não "o servidor confirmou 200").
 - **Peso inicial**: CSS + JS + hero. As fotos da galeria carregam sob
   demanda com `loading="lazy"`.
 - **Acessibilidade**: navegação por teclado no lightbox (setas e `Esc`), foco
